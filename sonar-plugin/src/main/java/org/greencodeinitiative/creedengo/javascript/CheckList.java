@@ -26,6 +26,7 @@ import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Collections;
 
 public class CheckList {
 
@@ -65,6 +66,10 @@ public class CheckList {
         return getAllHooks().stream()
                 .filter(hook -> hook.isAnnotationPresent(annotation))
                 .collect(Collectors.toList());
+    }
+
+    public static List<Class<?>> getSensorChecks() {
+        return Collections.singletonList(OptimizeBrowserslistTagInPackageJsonRule.class);
     }
 
 }
