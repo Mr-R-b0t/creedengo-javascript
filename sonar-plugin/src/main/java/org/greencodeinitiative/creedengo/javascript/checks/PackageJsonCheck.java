@@ -15,25 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.greencodeinitiative.creedengo.javascript;
+package org.greencodeinitiative.creedengo.javascript.checks;
 
-import org.greencodeinitiative.creedengo.javascript.checks.PackageJsonSensor;
-import org.sonar.api.Plugin;
+import org.sonar.api.batch.fs.InputFile;
+import org.sonar.api.batch.sensor.SensorContext;
 
-public class JavaScriptPlugin implements Plugin {
+public interface PackageJsonCheck {
 
-    public static final String NAME = "Creedengo";
-
-    @Override
-    public void define(Context context) {
-        context.addExtensions(
-                ESLintRulesBundle.class,
-                JavaScriptRulesDefinition.class,
-                JavaScriptRuleRepository.class,
-                TypeScriptRulesDefinition.class,
-                TypeScriptRuleRepository.class,
-                PackageJsonSensor.class
-        );
-    }
+    void analyze(SensorContext context, InputFile inputFile, String contents);
 
 }
